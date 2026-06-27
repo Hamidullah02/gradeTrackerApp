@@ -45,11 +45,6 @@ class _AddSubjectState extends State<AddSubject> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Card(
-        color: Colors.white,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
@@ -59,44 +54,16 @@ class _AddSubjectState extends State<AddSubject> {
               children: [
                 Text(
                   "Add Subject",
-                  style: const TextStyle(
-                    color: Color(0xFF1A237E),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                  style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 30),
                 TextFormField(
                   controller: _nameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Subject Name',
-                    labelStyle: const TextStyle(color: Color(0xFF666666)),
                     hintText: 'e.g. Mathematics',
-                    hintStyle: const TextStyle(color: Color(0xFF999999)),
-                    prefixIcon: const Icon(Icons.book, color: Color(0xFF1A237E)),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFF1A237E), width: 2),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.red, width: 2),
-                    ),
+                    prefixIcon: Icon(Icons.book),
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -108,34 +75,10 @@ class _AddSubjectState extends State<AddSubject> {
                 const SizedBox(height: 20),
                 TextFormField(
                   controller: _markController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Subject Mark',
-                    labelStyle: const TextStyle(color: Color(0xFF666666)),
                     hintText: '0 - 100',
-                    hintStyle: const TextStyle(color: Color(0xFF999999)),
-                    prefixIcon: const Icon(Icons.percent, color: Color(0xFF1A237E)),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFF1A237E), width: 2),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.red, width: 2),
-                    ),
+                    prefixIcon: Icon(Icons.percent),
                   ),
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
                   validator: (value) {
@@ -155,14 +98,6 @@ class _AddSubjectState extends State<AddSubject> {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: _submitForm,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A237E),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  ),
                   child: const Text("Add Subject"),
                 ),
               ],

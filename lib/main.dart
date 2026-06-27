@@ -3,6 +3,7 @@ import 'package:gradetracker/providers/GradeProvider.dart';
 import 'package:gradetracker/screens/addSubject.dart';
 import 'package:gradetracker/screens/subjectList.dart';
 import 'package:gradetracker/screens/summary.dart';
+import 'package:gradetracker/themes/app_themes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Grade Tracker',
-          // home:  AddSubject(),
+          theme: gradeProvider.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
           home: const Home(),
         );
       },

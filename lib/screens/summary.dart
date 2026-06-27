@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradetracker/providers/GradeProvider.dart';
+import 'package:gradetracker/themes/app_themes.dart';
 import 'package:provider/provider.dart';
 
 class SummaryScreen extends StatelessWidget {
@@ -22,20 +23,16 @@ class SummaryScreen extends StatelessWidget {
               children: [
                 Text(
                   "Academic Summary",
-                  style: const TextStyle(
-                    color: Color(0xFF1A237E),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 16),
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).cardTheme.color,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
-                      color: Colors.grey.shade300,
+                      color: Theme.of(context).dividerTheme.color ?? Colors.grey,
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -51,15 +48,15 @@ class SummaryScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CircleAvatar(
-                          backgroundColor: _getGradeBackgroundColor(overallGrade),
+                          backgroundColor: AppTheme.getGradeBackgroundColor(overallGrade),
                           radius: 53,
                           child: CircleAvatar(
-                            backgroundColor: Colors.white,
+                            backgroundColor: Theme.of(context).cardTheme.color,
                             radius: 45,
                             child: Text(
                               overallGrade,
                               style: TextStyle(
-                                color: _getGradeColor(overallGrade),
+                                color: AppTheme.getGradeColor(overallGrade),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 35,
                               ),
@@ -69,19 +66,12 @@ class SummaryScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(
                           "Overall Grade",
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 8),
                         Text(
                           avgMark > 0 ? avgMark.toStringAsFixed(1) : 'N/A',
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontSize: 16,
-                          ),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
                     ),
@@ -95,7 +85,7 @@ class SummaryScreen extends StatelessWidget {
                         icon: Icons.menu_book,
                         label: "Total Subjects",
                         value: "$totalSubjects",
-                        color: const Color(0xFF1A237E),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -133,11 +123,6 @@ class SummaryScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Card(
-                  color: Colors.white,
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -145,11 +130,7 @@ class SummaryScreen extends StatelessWidget {
                       children: [
                         Text(
                           "All Subjects",
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         const SizedBox(height: 8),
                         if (subjects.isEmpty)
@@ -163,19 +144,13 @@ class SummaryScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     subject.name,
-                                    style: const TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 16,
-                                    ),
+                                    style: Theme.of(context).textTheme.bodyLarge,
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         subject.mark.toStringAsFixed(1),
-                                        style: const TextStyle(
-                                          color: Colors.black54,
-                                          fontSize: 14,
-                                        ),
+                                        style: Theme.of(context).textTheme.bodyMedium,
                                       ),
                                       const SizedBox(width: 8),
                                       Container(
@@ -184,13 +159,13 @@ class SummaryScreen extends StatelessWidget {
                                           vertical: 2,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: _getGradeBackgroundColor(subject.grade),
+                                          color: AppTheme.getGradeBackgroundColor(subject.grade),
                                           borderRadius: BorderRadius.circular(4),
                                         ),
                                         child: Text(
                                           subject.grade,
                                           style: TextStyle(
-                                            color: _getGradeColor(subject.grade),
+                                            color: AppTheme.getGradeColor(subject.grade),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -212,25 +187,6 @@ class SummaryScreen extends StatelessWidget {
       },
     );
   }
-
-  Color _getGradeColor(String grade) {
-    switch (grade) {
-      case 'A':
-        return Colors.green;
-      case 'B':
-        return Colors.blue;
-      case 'C':
-        return Colors.orange;
-      case 'F':
-        return Colors.red;
-      default:
-        return Colors.grey;
-    }
-  }
-
-  Color _getGradeBackgroundColor(String grade) {
-    return _getGradeColor(grade).withOpacity(0.2);
-  }
 }
 
 class _SummaryCard extends StatelessWidget {
@@ -249,11 +205,6 @@ class _SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -270,10 +221,7 @@ class _SummaryCard extends StatelessWidget {
             ),
             Text(
               label,
-              style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 14,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

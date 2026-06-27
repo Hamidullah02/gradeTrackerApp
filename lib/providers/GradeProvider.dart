@@ -6,11 +6,17 @@ final List<Map<String, dynamic>> dummyData = [
   {'name': 'Physics', 'mark': 72.0},
   {'name': 'Chemistry', 'mark': 64.0},
   {'name': 'Biology', 'mark': 91.0},
+  {'name': 'English', 'mark': 58.5},
+  {'name': 'History', 'mark': 77.0},
+  {'name': 'Geography', 'mark': 45.0},
+  {'name': 'Computer Science', 'mark': 89.0},
+  {'name': 'Economics', 'mark': 68.5},
+  {'name': 'Art', 'mark': 82.0},
 ];
 
 class GradeProvider extends ChangeNotifier {
   final List<Subject> _subjects = [];
-  bool _isDarkMode = false;
+  bool _isDarkMode = true;
 
   List<Subject> get subjects => _subjects;
   bool get isDarkMode => _isDarkMode;

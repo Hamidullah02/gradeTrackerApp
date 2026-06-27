@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradetracker/models/subject.dart';
 import 'package:gradetracker/providers/GradeProvider.dart';
+import 'package:gradetracker/themes/app_themes.dart';
 import 'package:provider/provider.dart';
 
 class SubjectList extends StatelessWidget {
@@ -22,11 +23,7 @@ class SubjectList extends StatelessWidget {
             children: [
               Text(
                 "My Subjects",
-                style: const TextStyle(
-                  color: Color(0xFF1A237E),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 8),
               const SizedBox(height: 16),
@@ -77,30 +74,14 @@ class _SubjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color gradeColor;
-    switch (subject.grade) {
-      case 'A':
-        gradeColor = Colors.green;
-        break;
-      case 'B':
-        gradeColor = Colors.blue;
-        break;
-      case 'C':
-        gradeColor = Colors.orange;
-        break;
-      case 'F':
-        gradeColor = Colors.red;
-        break;
-      default:
-        gradeColor = Colors.grey;
-    }
+    final Color gradeColor = AppTheme.getGradeColor(subject.grade);
 
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardTheme.color,
         border: Border.all(
-          color: Colors.grey.shade300,
+          color: Theme.of(context).dividerTheme.color ?? Colors.grey,
         ),
         borderRadius: BorderRadius.circular(15),
       ),
@@ -110,11 +91,7 @@ class _SubjectCard extends StatelessWidget {
         children: [
           Text(
             subject.name,
-            style: const TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           Row(
             children: [
@@ -123,24 +100,17 @@ class _SubjectCard extends StatelessWidget {
                 children: [
                   Text(
                     subject.mark.toString(),
-                    style: const TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
                     "/100",
-                    style: const TextStyle(
-                      color: Colors.black54,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
               ),
               const SizedBox(width: 12),
               CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).cardTheme.color,
                 radius: 26,
                 child: CircleAvatar(
                   backgroundColor: gradeColor.withOpacity(0.2),
