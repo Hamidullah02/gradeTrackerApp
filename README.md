@@ -15,3 +15,9 @@ A Flutter app for students to track subjects, marks, and grades.
 1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/gradetracker.git
+
+## How to Run
+
+```bash
+flutter pub get
+flutter run
